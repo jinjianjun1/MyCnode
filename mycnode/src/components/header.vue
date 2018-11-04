@@ -34,7 +34,6 @@
 .navbar{
     width: 80%;
     margin: auto;
-    border: 1px solid black
 }
 ul{
     list-style: none;
@@ -53,5 +52,11 @@ ul li>a{
   img{
       max-width: 120px;
       margin:10px 0 0 20px;
+  }
+  .navbar ul li :hover{
+      color: #fff;
+  }
+  .navbar input{
+      margin-left: 10px;
   }
 </style>

@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <Header></Header>
-    <Postlist></Postlist>
+    <div class="main">
+      <Postlist>
+
+      </Postlist>
+    </div>
+    
   </div>
 </template>
 
@@ -18,6 +23,16 @@ export default {
 </script>
 
 <style scoped>
- 
+*{
+  margin: 0;
+  padding: 0;
+}
+#app{
+  background-color: #e1e1e1
+}
+ .main{
+   width: 80%;
+   margin: 0 auto;
+ }
   
 </style>
