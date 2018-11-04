@@ -2,9 +2,10 @@
   <div id="app">
     <Header></Header>
     <div class="main">
-      <Postlist>
-
-      </Postlist>
+      <router-view name="main">
+        
+      </router-view>
+      
     </div>
     
   </div>
