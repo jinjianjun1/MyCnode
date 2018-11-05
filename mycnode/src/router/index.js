@@ -19,6 +19,13 @@ export default new Router({
      components:{
        main:Article
      }
-   }
+   },
+   {
+    name:'information',
+    path:'/information/:id',
+    components:{
+      main:Article
+    }
+  }
   ]
 })

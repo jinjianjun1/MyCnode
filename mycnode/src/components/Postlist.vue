@@ -14,7 +14,7 @@
                     <a href=""><span>招聘</span></a>
                     </div>
                 </li>
-                <li v-for="post in posts">
+                <li v-for="(post,index) in posts" :key="index">
                     <router-link :to="{name:'post_content',params:{id:post.id}}">
                         <img :src="post.author.avatar_url" >
                     </router-link>
