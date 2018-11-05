@@ -75,7 +75,6 @@ export default {
   beforeMount() {
     this.isloading = true;
     this.getData();
-    this.isloading = false;
   }
 };
 </script>

@@ -38,8 +38,8 @@ Vue.filter('setDate',function(str){
     return parseInt(time/86400000)+'天前'
   }else if(time/2592000000<12){
     return parseInt(time/2592000000)+'月前'
-  }else {
-    return time/2592000000 +'年前'
+  }else if(time/31104000000){
+    return parseInt(time/31104000000) +'年前'
   }
   console.log(time)
 })

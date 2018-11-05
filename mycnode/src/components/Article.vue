@@ -22,7 +22,7 @@
             <div class="container">
             <div class="topbar"> {{post.replies.length}} 回复</div>
                 <div class="inner" v-for="(reply,index) in post.replies" :key="index">
-                    <router-link :to="{name:information,params:id}">
+                    <router-link :to="{name:'information',params:{name:reply.author.loginname}}">
                         <img :src="reply.author.avatar_url" >
                     </router-link>
                     
