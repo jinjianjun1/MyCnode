@@ -29,7 +29,7 @@
                         <span :class="[{post_good:(post.good==true)},{post_top:(post.top==true)},
                         {post_tag:(post.top!=true &&post.good!=true)}]">{{post | setTag }}</span>   
                     </div>
-                    <router-link :to="{name:'post_content',params:{id:post.id}}">
+                    <router-link :to="{name:'post_content',params:{id:post.id,name:post.author.loginname}}">
                         
                        <span> {{post.title}}</span>
                     

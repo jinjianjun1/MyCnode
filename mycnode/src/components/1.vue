@@ -1,13 +1,15 @@
 <template>
-    <div class="article markdown-body" > 
+    <div class="article " > 
         <div class="loading" v-if="isloading">
 
         </div>
         <div v-else>
-            <div class="topic_header" >
+            <div  class="markdown-body">
+                <div class="topic_header" > 
                 <span :class="[{post_good:(post.good==true)},{post_top:(post.top==true)},
                         {post_tag:(post.top!=true &&post.good!=true)}]">{{post | setTag }}</span>           
                 <span class="topic_title"> {{post.title}} </span>
+                
                 <div class="topic_bar">
                 
                     <span>•发布于：{{post.create_at | setDate }}</span>
@@ -16,7 +18,8 @@
                     <span>•来自 {{post | setTag}}</span>
                 
                 </div>
-                <div v-html="post.content" class="topic_content"></div>
+                </div>
+                <div v-html="post.content" class="topic_content" ></div>
             </div>
           
             <div class="container">
@@ -64,8 +67,6 @@ export default {
             this.post = res.data.data;
             console.log(this.post.replies);
             console.log(this.post);
-            
-            
           }
         })
         .catch(err => {
@@ -76,19 +77,27 @@ export default {
   beforeMount() {
     this.isloading = true;
     this.getArticleData();
+  },
+  watch: {
+    $route(to, from) {
+      this.getArticleData();
+    }
   }
 };
 </script>
 
 <style>
-
+.article{
+    width: 80vw;
+    margin-right: -2vw;
+}
 @import url("../assets/markdown.css");
 .markdown-body {
   box-sizing: border-box;
   min-width: 200px;
   max-width: 980px;
   margin: 0 auto;
-  padding: 45px;
+  /* padding: 45px; */
 }
 
 @media (max-width: 767px) {
@@ -96,67 +105,71 @@ export default {
     padding: 15px;
   }
 }
-.topic_title{
-    font-size: 22px;
-    font-weight: bold;
-    padding-top: 15px;
-    padding-left: 5px;
+.topic_title {
+  font-size: 22px;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-left: 5px;
 }
-.topic_bar{
-    font-size: 12px;
-    color: #838383;
+.topic_bar {
+  font-size: 12px;
+  color: #838383;
 }
-.topic_content{
-    border-top: 1px solid #e5e5e5;
-    margin-top: 10px;
-    padding: 8px;
+.topic_content {
+  border-top: 1px solid #e5e5e5;
+  /* margin-top: 10px; */
+  padding: 8px;
+  background-color: #fff;
 }
-.topic_header{
-    padding: 8px;
+.topic_header {
+  padding: 8px;
 }
-.topic_header>:first-child{
-     background-color: #80bd01;
+.topic_header > :first-child {
+  background-color: #80bd01;
   color: #fff;
-
   font-size: 9px;
   padding: 3px 4px;
   border-radius: 3px;
 }
 .topic_header,
-.container{
-    background-color: #fff;
+.container {
+  background-color: #fff;
 }
-.container .inner{
-    padding-left:10px;
-    border-top: 1px solid #f0f0f0; 
-    padding-top: 10px;
-    padding-bottom: 15px;
+.container {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  /* padding: 45px; */
 }
-.container .topbar{
-    background-color: #f6f6f6;
-    font-size: 14px;
-    line-height: 3em;
-    padding-left: 10px;
-    margin-top: 10px;
+.container .inner {
+  padding-left: 10px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 10px;
+  padding-bottom: 15px;
 }
-.container img{
-    width: 30px;
-    height: 30px;
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
+.container .topbar {
+  background-color: #f6f6f6;
+  font-size: 14px;
+  line-height: 3em;
+  padding-left: 10px;
+  margin-top: 10px;
 }
-.container .comment_infor .comment_floor{
-    color: #08c;
-    display: inline;
-    font-size: 12px;
-    vertical-align: middle;
-    cursor: pointer;
+.container img {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-right: 10px;
+  margin-top: 5px;
 }
-.container .comment_infor .comment_floor:hover{
-    color: #005580;
+.container .comment_infor .comment_floor {
+  color: #08c;
+  display: inline;
+  font-size: 12px;
+  vertical-align: middle;
+  cursor: pointer;
 }
-.article{
-    padding-top: 9px
+.container .comment_infor .comment_floor:hover {
+  color: #005580;
 }
 </style>

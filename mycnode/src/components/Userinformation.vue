@@ -16,8 +16,8 @@
                 <ul>
                     <li v-for="(item,index) in userinfor.recent_topics" :key="index">
                         <img :src="item.author.avatar_url" alt="">
-                        <router-link :to="{name:'item_content',params:{id:item.id}}">
-                            {{item.title}}
+                        <router-link :to="{name:'post_content',params:{id:item.id}}">
+                          <p class="create-title">  {{item.title}} </p>
                         </router-link>
                     </li>
                 </ul>
@@ -28,7 +28,7 @@
                     <li v-for="(item,index) in userinfor.recent_replies " :key="index" >
                         <img :src="item.author.avatar_url" alt="">
                         <router-link :to="{name:'post_content',params:{id:item.id}}">
-                            {{item.title}}
+                            <p class="create-title"> {{item.title}} </p>
                         </router-link>
                     </li>
                 </ul>
@@ -88,6 +88,13 @@ section{
     background-color: #f6f6f6;
     margin-top: 10px;
 }
+.topbar-create,
+.topbar-reply{
+    padding: 10px;
+    font-family: Helvetica;
+    font-size: 14px;
+
+}
 ul{
     padding-left: 8px;
 }
@@ -105,5 +112,13 @@ img{
     width: 40px;
     height: 40px;
     padding: 10px;
+}
+.user-infor{
+    padding-top: 1px
+}
+.create-title{
+    color: #08c;
+    display: inline;
+    text-decoration: none;
 }
 </style>

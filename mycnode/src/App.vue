@@ -2,10 +2,9 @@
   <div id="app">
     <Header></Header>
     <div class="main">
-      <router-view name="main">
-        
-      </router-view>
       
+      <router-view name="main" class="article"></router-view>
+      <router-view name="side" class="slide"></router-view>
     </div>
     
   </div>
@@ -34,6 +33,14 @@ export default {
  .main{
    width: 80%;
    margin: 0 auto;
+   display: flex;
+   justify-content: space-around;
+ }
+ .article{
+   width: 80vw;
+ }
+ .slidebar{
+   width: 20vw;
  }
   
 </style>
