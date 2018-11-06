@@ -5,19 +5,22 @@
             <section>
                 <div class="topbar-theme">主页 /</div>
                 <img :src="userinfor.avatar_url" class="them-pic" >
-                <span> {{userinfor.loginname}} </span>
-                <p>{{userinfor.score}}积分 </p>
-                 github账号:@{{userinfor.githubUsername}}
-                <p>注册时间{{userinfor.create_at | setDate}}</p>
+                <span class="topbar-theme-name"> {{userinfor.loginname}} </span>
+                <div class="topbar-theme-infor">
+                    <p>{{userinfor.score}}积分 </p>
+                    github账号:@{{userinfor.githubUsername}}
+                    <p>注册时间{{userinfor.create_at | setDate}}</p>
+                </div>
+                
             </section>
             
             <div class="createtopic">
                 <p class="topbar-create">最近创建的话题</p>
                 <ul>
-                    <li v-for="(item,index) in userinfor.recent_topics" :key="index">
+                    <li v-for="(item,index) in userinfor.recent_topics" :key="index" class="item"> 
                         <img :src="item.author.avatar_url" alt="">
-                        <router-link :to="{name:'post_content',params:{id:item.id}}">
-                          <p class="create-title">  {{item.title}} </p>
+                        <router-link class="create-title" :to="{name:'post_content',params:{id:item.id}}">
+                           {{item.title}} 
                         </router-link>
                     </li>
                 </ul>
@@ -25,7 +28,7 @@
             <div class="replise">
                 <p class="topbar-reply">回复主题</p>
                 <ul>
-                    <li v-for="(item,index) in userinfor.recent_replies " :key="index" >
+                    <li v-for="(item,index) in userinfor.recent_replies " :key="index" class="item">
                         <img :src="item.author.avatar_url" alt="">
                         <router-link :to="{name:'post_content',params:{id:item.id}}">
                             <p class="create-title"> {{item.title}} </p>
@@ -70,6 +73,8 @@
 <style scoped>
 section{
     background-color: #fff;
+    position: relative;
+  
 }
 .createtopic{
     background-color: #fff;
@@ -81,6 +86,14 @@ section{
     padding: 10px;
     font-size: 15px;
     color: #80bd01;
+}
+.topbar-theme-name{
+    position: absolute;
+    top: 65px
+}
+.topbar-theme-infor{
+    padding-left: 10px;
+    padding-bottom: 30px;
 }
 .topbar-theme,
 .topbar-create,
@@ -120,5 +133,9 @@ img{
     color: #08c;
     display: inline;
     text-decoration: none;
+    padding-left: 5px;
+}
+.item{
+    border-bottom: 1px solid #f0f0f0;
 }
 </style>

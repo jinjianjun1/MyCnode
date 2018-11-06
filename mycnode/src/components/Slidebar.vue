@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar"> 
         <div class="author-information">
-            <div class="author">作者</div>
+            <div class="author">个人信息</div>
             <div class="author-infor">
                 <router-link :to="{name:'information',params:{name:userinfor.loginname}}">
                     <img :src="userinfor.avatar_url" >
