@@ -41,6 +41,7 @@
                     </a>
                     </div>                   
                 </li>
+                <li> <pagination @handle="renderlist"></pagination></li>
             </ul>
         </div>            
         
@@ -48,20 +49,27 @@
 </template>
 
 <script>
+import pagination from './Pagination'
 export default {
   name: "Postlist",
   data() {
     return {
       isloading: false,
-      posts: []
+      posts: [],
+      postpage:1
     };
+  },
+  components:{
+    pagination
   },
   methods: {
     getData() {
       this.$http
-        .get("https://cnodejs.org/api/v1/topics", {
-          page: 1,
+        .get("https://cnodejs.org/api/v1/topics",{
+          params:{
+          page: this.postpage,
           limit: 20
+          }
         })
         .then(res => {
           this.isloading = false;
@@ -70,7 +78,11 @@ export default {
         .catch(err => {
           console.log(err);
         });
-    }
+    },
+    renderlist(value){
+      this.postpage=value
+      this.getData()
+}
   },
   beforeMount() {
     this.isloading = true;

@@ -12,7 +12,8 @@ export default new Router({
       name:'root',
       path:'/',
       components:{
-        main:Postlist
+        main:Postlist,
+        side:Slidebar
       }
     },
    {

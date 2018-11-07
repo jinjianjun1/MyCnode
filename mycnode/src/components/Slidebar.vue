@@ -1,6 +1,9 @@
 <template>
-    <div class="sidebar"> 
-        <div class="author-information">
+    <div class="sidebar">
+        <div v-if="userinfor==undefined">
+            
+        </div> 
+        <div v-else class="author-information">
             <div class="author">个人信息</div>
             <div class="author-infor">
                 <router-link :to="{name:'information',params:{name:userinfor.loginname}}">
@@ -19,10 +22,10 @@
         </div>
         <div class="recent-topic">
             <div class="othertopic">作者其他话题</div>
-            <ul>
+            <ul class="frame">
                 <li v-for="(list,index) in concerCount" :key="index" >
-                    <router-link :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">
-                       <p class="font">{{list.title}}</p>   
+                    <router-link class="font" :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">
+                       {{list.title}} 
                     </router-link>
                     
                 </li>
@@ -30,10 +33,10 @@
         </div>
         <div class="recent-reply">
             <div class="noreply">无人回复的话题</div>
-            <ul>
+            <ul class="frame">
                 <li v-for="(list,index) in replyCount" :key="index" >
-                    <router-link :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">
-                        <p class="font">{{list.title}}</p>  
+                    <router-link class="font" :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">
+                        {{list.title}}  
                     </router-link>
                     
                 </li>
@@ -112,7 +115,7 @@ ul,li{
     margin-top: 5px;
     text-decoration: none;
     font-size: 13px;
-    padding-left: -10px
+    
 }
 .name{
   position: absolute;
@@ -136,5 +139,8 @@ width: 30vw;
 float: right;
 
 }
-
+.frame{
+    padding-left: 14px;
+    padding-bottom: 5px;
+}
 </style>

@@ -30,8 +30,8 @@
                 <ul>
                     <li v-for="(item,index) in userinfor.recent_replies " :key="index" class="item">
                         <img :src="item.author.avatar_url" alt="">
-                        <router-link :to="{name:'post_content',params:{id:item.id}}">
-                            <p class="create-title"> {{item.title}} </p>
+                        <router-link class="create-title" :to="{name:'post_content',params:{id:item.id}}">
+                             {{item.title}} 
                         </router-link>
                     </li>
                 </ul>
