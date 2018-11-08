@@ -3,7 +3,7 @@
         <div class="loading" v-if="isloading">
 
         </div>
-        <div v-else>
+        <div v-else class="article">
             <div class="topic_header" >
                 <span :class="[{post_good:(post.good==true)},{post_top:(post.top==true)},
                         {post_tag:(post.top!=true &&post.good!=true)}]">{{post | setTag }}</span>           
@@ -76,6 +76,11 @@ export default {
   beforeMount() {
     this.isloading = true;
     this.getArticleData();
+  },
+  watch:{
+      '$route'(to,from){
+          this.getArticleData()
+      }
   }
 };
 </script>
@@ -157,6 +162,7 @@ export default {
     color: #005580;
 }
 .article{
-    padding-top: 9px
+    padding-top: 5px;
+    width: 51.5vw;
 }
 </style>

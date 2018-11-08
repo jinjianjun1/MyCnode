@@ -63,7 +63,7 @@
 
 <style scoped>
 .currentPage{
-    background-color: black
+    background-color: #f0f0f0;
 }
 .pagebtn{
     /* background-color: red; */

@@ -1,6 +1,9 @@
 <template>
     <div class="sidebar">
-        <div v-if="userinfor==undefined">
+        <div v-if="dataarrive==false" class="author-infor">
+            <p class="side-title">CNode:Node.js专业中文社区</p>
+            <p class="side-tip">您可以<span> 登录 </span>或 <span>注册</span>，也可以</p>
+            <span class="side-login">通过GitHub登录</span>
             
         </div> 
         <div v-else class="author-information">
@@ -24,7 +27,8 @@
             <div class="othertopic">作者其他话题</div>
             <ul class="frame">
                 <li v-for="(list,index) in concerCount" :key="index" >
-                    <router-link class="font" :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">
+                    <router-link class="font" :to="{name:'post_content',
+                    params:{id:list.id,name:list.author.loginname}}">
                        {{list.title}} 
                     </router-link>
                     
@@ -35,7 +39,8 @@
             <div class="noreply">无人回复的话题</div>
             <ul class="frame">
                 <li v-for="(list,index) in replyCount" :key="index" >
-                    <router-link class="font" :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">
+                    <router-link class="font" :to="{name:'post_content',
+                    params:{id:list.id,name:list.author.loginname}}">
                         {{list.title}}  
                     </router-link>
                     
@@ -51,7 +56,8 @@
         name:'Slidebar',
         data(){
             return {
-                userinfor:{}
+                userinfor:{},
+                dataarrive:false
             }
         },
         computed: {
@@ -70,15 +76,21 @@
             getData(){
                 this.$http.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`).then(res=>{
                     this.userinfor=res.data.data
-                    console.log(this.userinfor)
+                    this.dataarrive=true
                 }).catch(err=>{
                     console.log(err)
+                    this.dataarrive=false
                 })
             }
         },
         beforeMount() {
-            this.getData()
-        } 
+            this.getData()   
+        },
+        watch: {
+            '$route'(to,from){
+                this.getData()
+            }
+        }
         
     }
 </script>
@@ -135,12 +147,24 @@ ul,li{
 .sidebar{
 margin: 15px;
 margin-top: 9px;
-width: 30vw;
+width: 20vw;
 float: right;
 
 }
 .frame{
     padding-left: 14px;
     padding-bottom: 5px;
+}
+.side-title{
+    font-size:14px;
+}
+.side-tip{
+    font-size: 13px
+}
+.side-login{
+    background-color: #5bc0de;
+    color: #fff;
+    font-size: 14px;
+    padding: 6px
 }
 </style>

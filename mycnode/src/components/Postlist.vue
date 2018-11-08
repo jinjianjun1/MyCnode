@@ -15,7 +15,7 @@
                     </div>
                 </li>
                 <li v-for="(post,index) in posts" :key="index">
-                    <router-link :to="{name:'post_content',params:{id:post.id}}">
+                    <router-link :to="{name:'information',params:{name:post.author.loginname}}">
                         <img :src="post.author.avatar_url" >
                     </router-link>
                    <div class="countcontainer">
@@ -116,6 +116,7 @@ ul > li {
 }
 .Page {
   background-color: #fff;
+  margin-top: -7px;
 }
 .Page .firstli {
   font-size: 14px;
